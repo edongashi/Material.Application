@@ -7,7 +7,7 @@ using System.Windows.Data;
 
 namespace Material.Application.ValueConverters
 {
-    public class CollectionToVisibilityConverter : IValueConverter
+    internal class CollectionToVisibilityConverter : IValueConverter
     {
         public Visibility EmptyValue { get; set; } = Visibility.Hidden;
 
