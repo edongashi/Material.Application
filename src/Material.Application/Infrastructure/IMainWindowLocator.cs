@@ -1,9 +1,9 @@
-﻿using Material.Application.Controls;
+﻿using System.Windows;
 
 namespace Material.Application.Infrastructure
 {
     public interface IMainWindowLocator
     {
-        MaterialRoutesWindow GetMainWindow();
+        Window GetMainWindow();
     }
 }

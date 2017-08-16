@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using Material.Application.Commands;
 using Material.Application.Controls;
@@ -102,7 +103,7 @@ namespace Material.Application.Infrastructure
             }
         }
 
-        public MaterialRoutesWindow Window { get; private set; }
+        public Window Window { get; private set; }
 
         protected internal string HostIdentifer => "RouteController" + id;
 
@@ -140,7 +141,7 @@ namespace Material.Application.Infrastructure
             }
         }
 
-        public MaterialRoutesWindow GetMainWindow() => Window;
+        public Window GetMainWindow() => Window;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -170,10 +171,7 @@ namespace Material.Application.Infrastructure
                 throw new InvalidOperationException("No initial route has been specified.");
             }
 
-            Window = new MaterialRoutesWindow(this)
-            {
-                RootDialog = { Identifier = HostIdentifer }
-            };
+            Window = CreateMainWindow();
 
             Window.Closing += OnWindowClosing;
             Window.Show();
@@ -213,6 +211,14 @@ namespace Material.Application.Infrastructure
 
         protected virtual void OnInitialized()
         {
+        }
+
+        protected virtual Window CreateMainWindow()
+        {
+            return new MaterialRoutesWindow(this)
+            {
+                RootDialog = { Identifier = HostIdentifer }
+            };
         }
 
         protected virtual Route GetInitialRoute() => InitialRoute ?? Routes.MenuRoutes.First();
