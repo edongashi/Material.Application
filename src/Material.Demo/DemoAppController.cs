@@ -10,6 +10,7 @@ namespace Material.Demo
         {
             var factory = Routes.RouteFactory;
             Routes.MenuRoutes.Add(InitialRoute = factory.Get<HomeRoute>());
+            Routes.MenuRoutes.Add(factory.Get<AboutRoute>());
         }
     }
 }

@@ -1,0 +1,49 @@
+﻿<UserControl
+    x:Class="Material.Demo.Views.AboutView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
+    <Grid>
+        <materialDesign:Card
+            MaxWidth="600"
+            Margin="16"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch">
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <StackPanel Margin="24,24,16,16">
+                    <TextBlock Style="{StaticResource MaterialDesignTitleTextBlock}" Text="About this app" />
+                    <TextBlock
+                        Margin="0,24,0,0"
+                        Text="This is a description page about this application."
+                        TextWrapping="Wrap" />
+                    <DockPanel Margin="0,16,0,0">
+                        <Button
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center"
+                            Command="{Binding ContactCommand}"
+                            Content="CONTACT"
+                            DockPanel.Dock="Right"
+                            Style="{StaticResource MaterialDesignFlatButton}" />
+                        <TextBlock
+                            VerticalAlignment="Center"
+                            Text="You can contact us via e-mail."
+                            TextWrapping="Wrap" />
+                    </DockPanel>
+                    <DockPanel Margin="0,8,0,0">
+                        <Button
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center"
+                            Command="{Binding HomeCommand}"
+                            Content="HOME"
+                            DockPanel.Dock="Right"
+                            Style="{StaticResource MaterialDesignFlatButton}" />
+                        <TextBlock
+                            VerticalAlignment="Center"
+                            Text="To navigate home, click the following button."
+                            TextWrapping="Wrap" />
+                    </DockPanel>
+                </StackPanel>
+            </ScrollViewer>
+        </materialDesign:Card>
+    </Grid>
+</UserControl>

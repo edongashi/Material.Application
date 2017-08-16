@@ -8,4 +8,12 @@
         <views:HomeView />
     </DataTemplate>
 
+    <DataTemplate DataType="{x:Type routes:AboutRoute}">
+        <views:AboutView />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type routes:ContactRoute}">
+        <views:ContactView />
+    </DataTemplate>
+
 </ResourceDictionary>
