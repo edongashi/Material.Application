@@ -65,6 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Infrastructure\IContext.cs" />
+    <Compile Include="Infrastructure\IDialogHostContainer.cs" />
     <Compile Include="Infrastructure\Internal\DialogFileSaver.cs" />
     <Compile Include="Infrastructure\Internal\DialogFilePicker.cs" />
     <Compile Include="Infrastructure\Internal\DialogHostService.cs" />

@@ -21,7 +21,13 @@ namespace Material.Application.Infrastructure
                 throw new InvalidOperationException(ErrorMessages.MainWindowNotFound);
             }
 
-            return dialog.ShowTracked(window.RootDialog.Identifier.ToString(), width);
+            if (window is IDialogHostContainer hostContainer)
+            {
+                var dialogHost = hostContainer.GetRootDialog();
+                return dialog.ShowTracked(dialogHost.Identifier.ToString(), width);
+            }
+
+            throw new InvalidOperationException("Cannot display dialog in current window.");
         }
 
         public void CloseDialogs()
@@ -32,7 +38,14 @@ namespace Material.Application.Infrastructure
                 return;
             }
 
-            window.RootDialog.IsOpen = false;
+            if (window is IDialogHostContainer hostContainer)
+            {
+                var dialogHost = hostContainer.GetRootDialog();
+                if (dialogHost.CheckAccess())
+                {
+                    dialogHost.IsOpen = false;
+                }
+            }
         }
     }
 }
