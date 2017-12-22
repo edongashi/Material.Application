@@ -1,18 +1,16 @@
-<?xml version="1.0" encoding="utf-8"?>
-<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
-    <metadata>
-        <id>Material.Application</id>
-        <version>$version$</version>
-        <title>ViewModel-first WPF framework </title>
-        <authors>Edon Gashi</authors>
-        <owners>Edon Gashi</owners>
-        <projectUrl>https://github.com/EdonGashi/Material.Application</projectUrl>
-        <requireLicenseAcceptance>false</requireLicenseAcceptance>
-        <description>ViewModel-first WPF framework </description>
-        <tags>Material Design WPF XAML</tags>
-</metadata>
-  <files>
-    <file src=".\bin\Release\*.*" target="lib\net45\" exclude="*.pdb;*.nupkg;*.vshost.*;*.db"/>
-    <file src=".\bin\Release\**\*.*" target="lib\net45\" exclude="*.pdb;*.nupkg;*.vshost.*;*.db"/>
-  </files>
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Material.Application</id>
+    <version>$version$</version>
+    <title>Material Application</title>
+    <authors>Edon Gashi</authors>
+    <owners>Edon Gashi</owners>
+    <projectUrl>https://github.com/EdonGashi/Material.Application</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>View-First in WPF</description>
+    <releaseNotes>First release.</releaseNotes>
+    <copyright>Copyright 2017</copyright>
+    <tags>Tag1 Tag2</tags>
+  </metadata>
 </package>
