@@ -6,7 +6,6 @@
         <title>ViewModel-first WPF framework </title>
         <authors>Edon Gashi</authors>
         <owners>Edon Gashi</owners>
-        <licenseUrl></licenseUrl>
         <projectUrl>https://github.com/EdonGashi/Material.Application</projectUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>ViewModel-first WPF framework </description>
