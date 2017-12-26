@@ -22,11 +22,19 @@ namespace Material.Application.Infrastructure
     {
         public bool CloseOnClickAway
         {
-            get { return _closeOnClickAway; }
+            get => _closeOnClickAway;
             set
             {
                 _closeOnClickAway = value;
-                ((MaterialRoutesWindow) Window).RootDialog.CloseOnClickAway = value;
+
+                try
+                {
+                    ((MaterialRoutesWindow) Window).RootDialog.CloseOnClickAway = value;
+                }
+                catch
+                {
+                    //Supress (Window might not be initialized yet)
+                }
             }
         }
 
