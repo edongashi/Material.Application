@@ -20,6 +20,16 @@ namespace Material.Application.Infrastructure
     public abstract class AppController : INotifyPropertyChanged, IRouteErrorListener,
         IMainWindowLocator, IMainWindowController
     {
+        public bool CloseOnClickAway
+        {
+            get { return _closeOnClickAway; }
+            set
+            {
+                _closeOnClickAway = value;
+                ((MaterialRoutesWindow) Window).RootDialog.CloseOnClickAway = value;
+            }
+        }
+
         private static int dialogId;
 
         private readonly int id;
@@ -31,6 +41,7 @@ namespace Material.Application.Infrastructure
         private ICommand menuCommand;
         private string title;
         private bool toggleState;
+        private bool _closeOnClickAway;
 
         protected AppController()
         {
@@ -162,7 +173,8 @@ namespace Material.Application.Infrastructure
         {
             if (Window != null)
             {
-                throw new InvalidOperationException("Application window has already been shown for current controller.");
+                throw new InvalidOperationException(
+                    "Application window has already been shown for current controller.");
             }
 
             Initialize();
@@ -217,7 +229,7 @@ namespace Material.Application.Infrastructure
         {
             return new MaterialRoutesWindow(this)
             {
-                RootDialog = { Identifier = HostIdentifer }
+                RootDialog = {Identifier = HostIdentifer, CloseOnClickAway = CloseOnClickAway}
             };
         }
 
