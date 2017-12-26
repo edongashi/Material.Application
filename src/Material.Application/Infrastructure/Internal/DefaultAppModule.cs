@@ -58,8 +58,8 @@ namespace Material.Application.Infrastructure
                 .InSingletonScope()
                 .WithConstructorArgument("snackbarMessageQueue", appController.SnackbarMessageQueue);
 
-            Bind<IDialogService>()
-                .To<DialogHostService>();
+            //Bind<IDialogService>()
+            //    .To<DialogHostService>();
 
             Bind<IFilePicker>()
                 .To<DialogFilePicker>();

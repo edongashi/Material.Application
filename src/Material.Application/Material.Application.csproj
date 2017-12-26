@@ -39,9 +39,6 @@
     <Reference Include="MaterialDesignThemes.Wpf, Version=2.3.1.953, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\MaterialDesignThemes.2.3.1.953\lib\net45\MaterialDesignThemes.Wpf.dll</HintPath>
     </Reference>
-    <Reference Include="MaterialForms, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\WpfMaterialForms.1.1.2\lib\net461\MaterialForms.dll</HintPath>
-    </Reference>
     <Reference Include="Ninject, Version=3.3.4.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Ninject.3.3.4\lib\net45\Ninject.dll</HintPath>
     </Reference>
