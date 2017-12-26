@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Material.Application</id>
+    <version>$version$</version>
+    <title>Material Application</title>
+    <authors>Edon Gashi</authors>
+    <owners>Edon Gashi</owners>
+    <projectUrl>https://github.com/EdonGashi/Material.Application</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>View-First in WPF</description>
+    <releaseNotes>First release.</releaseNotes>
+    <copyright>Copyright 2017</copyright>
+    <tags>Tag1 Tag2</tags>
+  </metadata>
+</package>
