@@ -23,15 +23,30 @@ namespace Material.Application.Routing
 
         public TRoute Route => InnerWrapper.Route;
 
-        public Task<object> Push(bool cacheCurrentView) => InnerWrapper.Push(cacheCurrentView);
+        public Task<object> Push(bool cacheCurrentView)
+        {
+            return InnerWrapper.Push(cacheCurrentView);
+        }
 
-        public Task Change() => InnerWrapper.Change();
-        
-        public static implicit operator TRoute(RouteWrapper<TRoute> routeWrapper) => routeWrapper.Route;
+        public Task Change()
+        {
+            return InnerWrapper.Change();
+        }
 
-        public static implicit operator Task<TRoute>(RouteWrapper<TRoute> routeWrapper) => Task.FromResult(routeWrapper.Route);
+        public static implicit operator TRoute(RouteWrapper<TRoute> routeWrapper)
+        {
+            return routeWrapper.Route;
+        }
 
-        public static implicit operator Task<Route>(RouteWrapper<TRoute> routeWrapper) => Task.FromResult<Route>(routeWrapper.Route);
+        public static implicit operator Task<TRoute>(RouteWrapper<TRoute> routeWrapper)
+        {
+            return Task.FromResult(routeWrapper.Route);
+        }
+
+        public static implicit operator Task<Route>(RouteWrapper<TRoute> routeWrapper)
+        {
+            return Task.FromResult<Route>(routeWrapper.Route);
+        }
     }
 
     public static class RouteWrapperExtensions
@@ -46,15 +61,25 @@ namespace Material.Application.Routing
         }
 
         public static Task<object> Push<TRoute>(this IRouteWrapper<TRoute> wrapper) where TRoute : Route
-            => wrapper.Push(CachedByDefault);
+        {
+            return wrapper.Push(CachedByDefault);
+        }
 
         public static Task<TResult> Push<TRoute, TResult>(this IRouteWrapper<TRoute> wrapper) where TRoute : Route
-            => Push<TRoute, TResult>(wrapper, CachedByDefault);
+        {
+            return Push<TRoute, TResult>(wrapper, CachedByDefault);
+        }
 
         public static async Task<TResult> Push<TRoute, TResult>(this IRouteWrapper<TRoute> wrapper,
-            bool cacheCurrentView) where TRoute : Route => (TResult)await wrapper.Push(cacheCurrentView);
+            bool cacheCurrentView) where TRoute : Route
+        {
+            return (TResult)await wrapper.Push(cacheCurrentView);
+        }
 
         internal static RouteWrapper<TRoute> CreateProxy<TRoute>(this IRouteWrapper<TRoute> routeWrapper)
-            where TRoute : Route => new RouteWrapper<TRoute>(routeWrapper);
+            where TRoute : Route
+        {
+            return new RouteWrapper<TRoute>(routeWrapper);
+        }
     }
 }

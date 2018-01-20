@@ -5,8 +5,8 @@ namespace Material.Demo.Routes
 {
     public class ContactRoute : Route
     {
-        private string name;
         private string message;
+        private string name;
 
         public ContactRoute(string name)
         {
@@ -25,7 +25,10 @@ namespace Material.Demo.Routes
             get => name;
             set
             {
-                if (Equals(name, value)) return;
+                if (Equals(name, value))
+                {
+                    return;
+                }
                 name = value;
                 NotifyPropertyChanged();
                 if (string.IsNullOrWhiteSpace(name))
@@ -44,7 +47,10 @@ namespace Material.Demo.Routes
             get => message;
             set
             {
-                if (Equals(message, value)) return;
+                if (Equals(message, value))
+                {
+                    return;
+                }
                 message = value;
                 NotifyPropertyChanged();
                 if (message == null || message.Length < 10)

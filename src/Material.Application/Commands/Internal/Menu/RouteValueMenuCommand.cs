@@ -7,7 +7,8 @@ namespace Material.Application.Commands
     internal class RouteValueMenuCommand<TParameter> : RouteValueCommand<TParameter>, IMenuCommand
         where TParameter : struct
     {
-        public RouteValueMenuCommand(Route route, string commandText, PackIconKind? iconKind, Action<TParameter> execute,
+        public RouteValueMenuCommand(Route route, string commandText, PackIconKind? iconKind,
+            Action<TParameter> execute,
             Predicate<object> canExecute)
             : base(route, execute, canExecute)
         {

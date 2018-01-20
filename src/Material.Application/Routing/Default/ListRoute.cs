@@ -7,8 +7,8 @@ namespace Material.Application.Routing.Default
 {
     public class ListRoute : Route
     {
-        private object selectedItem;
         private string displayMemberPath;
+        private object selectedItem;
 
         public ListRoute(string title, IEnumerable<object> items)
         {
@@ -24,7 +24,10 @@ namespace Material.Application.Routing.Default
             get => selectedItem;
             set
             {
-                if (Equals(value, selectedItem)) return;
+                if (Equals(value, selectedItem))
+                {
+                    return;
+                }
                 selectedItem = value;
                 NotifyPropertyChanged();
             }
@@ -35,7 +38,10 @@ namespace Material.Application.Routing.Default
             get => displayMemberPath;
             set
             {
-                if (value == displayMemberPath) return;
+                if (value == displayMemberPath)
+                {
+                    return;
+                }
                 displayMemberPath = value;
                 NotifyPropertyChanged();
             }

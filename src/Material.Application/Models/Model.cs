@@ -72,17 +72,30 @@ namespace Material.Application.Models
             return isValid;
         }
 
-        public void ClearErrors() => errors.Clear();
+        public void ClearErrors()
+        {
+            errors.Clear();
+        }
 
-        public virtual bool Validate() => IsValid;
+        public virtual bool Validate()
+        {
+            return IsValid;
+        }
 
         public virtual void NotifyErrorsChanged(string propertyName)
-            => ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(propertyName));
+        {
+            ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(propertyName));
+        }
 
-        protected RefreshSource RefreshSource() => new RefreshSource(this);
+        protected RefreshSource RefreshSource()
+        {
+            return new RefreshSource(this);
+        }
 
         [NotifyPropertyChangedInvocator]
         public virtual void NotifyPropertyChanged([CallerMemberName] string propertyName = null)
-            => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }

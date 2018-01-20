@@ -8,9 +8,15 @@ namespace Material.Application.Models
     {
         private readonly List<IRefreshableCommand> commands = new List<IRefreshableCommand>();
 
-        public IEnumerator<IRefreshableCommand> GetEnumerator() => commands.GetEnumerator();
+        public IEnumerator<IRefreshableCommand> GetEnumerator()
+        {
+            return commands.GetEnumerator();
+        }
 
-        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
 
         public void Add(IRefreshableCommand command)
         {
@@ -20,7 +26,10 @@ namespace Material.Application.Models
             }
         }
 
-        public bool Remove(IRefreshableCommand command) => commands.Remove(command);
+        public bool Remove(IRefreshableCommand command)
+        {
+            return commands.Remove(command);
+        }
 
         public void Refresh()
         {

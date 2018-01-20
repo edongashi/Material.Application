@@ -51,7 +51,10 @@ namespace Material.Application.Infrastructure
             languages.Add(languageKey, language);
         }
 
-        public Language GetLanguage(string languageKey) => languages[languageKey];
+        public Language GetLanguage(string languageKey)
+        {
+            return languages[languageKey];
+        }
 
         protected virtual Language GetInitialLanguage()
         {

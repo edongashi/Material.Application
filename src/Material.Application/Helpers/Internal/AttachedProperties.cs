@@ -10,12 +10,12 @@ namespace Material.Application.Helpers
     {
         public static readonly DependencyProperty InputBindingsSourceProperty =
             DependencyProperty.RegisterAttached
-                (
-                    "InputBindingsSource",
-                    typeof(IEnumerable),
-                    typeof(AttachedProperties),
-                    new UIPropertyMetadata(null, InputBindingsSource_Changed)
-                );
+            (
+                "InputBindingsSource",
+                typeof(IEnumerable),
+                typeof(AttachedProperties),
+                new UIPropertyMetadata(null, InputBindingsSource_Changed)
+            );
 
         public static IEnumerable GetInputBindingsSource(DependencyObject obj)
         {

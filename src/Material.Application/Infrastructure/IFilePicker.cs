@@ -1,6 +1,4 @@
-﻿using System.Threading.Tasks;
-
-namespace Material.Application.Infrastructure
+﻿namespace Material.Application.Infrastructure
 {
     public interface IFilePicker
     {

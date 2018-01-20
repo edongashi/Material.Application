@@ -21,50 +21,19 @@ namespace Material.Application.Infrastructure
     public abstract class AppController : INotifyPropertyChanged, IRouteErrorListener,
         IMainWindowLocator, IMainWindowController
     {
-        public bool CloseOnClickAway
-        {
-            get => _closeOnClickAway;
-            set
-            {
-                _closeOnClickAway = value;
-
-                try
-                {
-                    ((MaterialRoutesWindow) Window).RootDialog.CloseOnClickAway = value;
-                }
-                catch
-                {
-                    //Supress (Window might not be initialized yet)
-                }
-            }
-        }
-
         private static int dialogId;
 
         private readonly int id;
+        private bool _closeOnClickAway;
 
         private double fontSize = 13d;
         private bool initialized;
+        private bool isAppbarExtended;
         private bool isMenuOpen;
         private bool lockToggle;
         private ICommand menuCommand;
         private string title;
         private bool toggleState;
-        private bool isAppbarExtended;
-        private bool _closeOnClickAway;
-
-        public bool IsAppbarExtended
-        {
-            get => isAppbarExtended;
-            set
-            {
-                isAppbarExtended = value;
-                if (GetMainWindow() is MaterialRoutesWindow window)
-                {
-                    window.Invoke(() => window.ExtendedAppBar.Visibility = GetAppbarExtendedVisibility());
-                }
-            }
-        }
 
         protected AppController()
         {
@@ -96,6 +65,37 @@ namespace Material.Application.Infrastructure
             Kernel = new StandardKernel();
         }
 
+        public bool CloseOnClickAway
+        {
+            get => _closeOnClickAway;
+            set
+            {
+                _closeOnClickAway = value;
+
+                try
+                {
+                    ((MaterialRoutesWindow)Window).RootDialog.CloseOnClickAway = value;
+                }
+                catch
+                {
+                    //Supress (Window might not be initialized yet)
+                }
+            }
+        }
+
+        public bool IsAppbarExtended
+        {
+            get => isAppbarExtended;
+            set
+            {
+                isAppbarExtended = value;
+                if (GetMainWindow() is MaterialRoutesWindow window)
+                {
+                    window.Invoke(() => window.ExtendedAppBar.Visibility = GetAppbarExtendedVisibility());
+                }
+            }
+        }
+
         protected internal IKernel Kernel { get; }
 
         protected Route InitialRoute { get; set; }
@@ -106,10 +106,13 @@ namespace Material.Application.Infrastructure
 
         public bool LockToggle
         {
-            get { return lockToggle; }
+            get => lockToggle;
             private set
             {
-                if (value == lockToggle) return;
+                if (value == lockToggle)
+                {
+                    return;
+                }
                 lockToggle = value;
                 OnPropertyChanged();
             }
@@ -117,10 +120,13 @@ namespace Material.Application.Infrastructure
 
         public bool ToggleState
         {
-            get { return toggleState; }
+            get => toggleState;
             private set
             {
-                if (value == toggleState) return;
+                if (value == toggleState)
+                {
+                    return;
+                }
                 toggleState = value;
                 OnPropertyChanged();
             }
@@ -128,10 +134,13 @@ namespace Material.Application.Infrastructure
 
         public ICommand MenuCommand
         {
-            get { return menuCommand; }
+            get => menuCommand;
             private set
             {
-                if (Equals(value, menuCommand)) return;
+                if (Equals(value, menuCommand))
+                {
+                    return;
+                }
                 menuCommand = value;
                 OnPropertyChanged();
             }
@@ -143,10 +152,13 @@ namespace Material.Application.Infrastructure
 
         public bool IsMenuOpen
         {
-            get { return isMenuOpen; }
+            get => isMenuOpen;
             set
             {
-                if (value == isMenuOpen) return;
+                if (value == isMenuOpen)
+                {
+                    return;
+                }
                 isMenuOpen = value;
                 ToggleState = value;
                 OnPropertyChanged();
@@ -155,10 +167,13 @@ namespace Material.Application.Infrastructure
 
         public string Title
         {
-            get { return title; }
+            get => title;
             set
             {
-                if (value == title) return;
+                if (value == title)
+                {
+                    return;
+                }
                 title = value;
                 OnPropertyChanged();
             }
@@ -166,16 +181,22 @@ namespace Material.Application.Infrastructure
 
         public double FontSize
         {
-            get { return fontSize; }
+            get => fontSize;
             set
             {
-                if (value.Equals(fontSize)) return;
+                if (value.Equals(fontSize))
+                {
+                    return;
+                }
                 fontSize = value;
                 OnPropertyChanged();
             }
         }
 
-        public Window GetMainWindow() => Window;
+        public Window GetMainWindow()
+        {
+            return Window;
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -257,7 +278,7 @@ namespace Material.Application.Infrastructure
                 {
                     Visibility =
                         GetAppbarExtendedVisibility()
-                },
+                }
             };
         }
 
@@ -266,7 +287,10 @@ namespace Material.Application.Infrastructure
             return IsAppbarExtended ? Visibility.Visible : Visibility.Collapsed;
         }
 
-        protected virtual Route GetInitialRoute() => InitialRoute ?? Routes.MenuRoutes.First();
+        protected virtual Route GetInitialRoute()
+        {
+            return InitialRoute ?? Routes.MenuRoutes.First();
+        }
 
         protected virtual IEnumerable<INinjectModule> LoadModules()
         {

@@ -12,7 +12,10 @@
 
         public string DisplayString { get; }
 
-        public override string ToString() => DisplayString;
+        public override string ToString()
+        {
+            return DisplayString;
+        }
     }
 
     public class ObjectPresenter<T> : ObjectPresenter

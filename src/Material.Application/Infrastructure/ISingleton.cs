@@ -18,18 +18,21 @@ namespace Material.Application.Infrastructure
             Instance = instance;
         }
 
+        public event PropertyChangedEventHandler PropertyChanged;
+
         public T Instance
         {
-            get { return instance; }
+            get => instance;
             set
             {
-                if (Equals(value, instance)) return;
+                if (Equals(value, instance))
+                {
+                    return;
+                }
                 instance = value;
                 OnPropertyChanged();
             }
         }
-
-        public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)

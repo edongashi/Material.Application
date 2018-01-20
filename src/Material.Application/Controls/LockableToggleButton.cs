@@ -16,8 +16,8 @@ namespace Material.Application.Controls
 
         public bool LockToggle
         {
-            get { return (bool)GetValue(LockToggleProperty); }
-            set { SetValue(LockToggleProperty, value); }
+            get => (bool)GetValue(LockToggleProperty);
+            set => SetValue(LockToggleProperty, value);
         }
 
         protected override void OnToggle()

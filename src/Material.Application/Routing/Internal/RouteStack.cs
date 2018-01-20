@@ -17,9 +17,9 @@ namespace Material.Application.Routing
         private readonly Stack<RouteItem> stack;
         private readonly object syncRoot = new object();
         private bool locked;
+        private object menuHeader;
 
         private RouteItem routeHead;
-        private object menuHeader;
 
         public RouteStack(ObservableCollection<Route> menuRoutes, IRouteFactory routeFactory,
             IRouteErrorListener routeErrorListener, IContext synchronizationContext)
@@ -40,7 +40,10 @@ namespace Material.Application.Routing
         {
             set
             {
-                if (routeHead == value) return;
+                if (routeHead == value)
+                {
+                    return;
+                }
                 var previous = routeHead;
                 routeHead = value;
                 if (value.Route != null)
@@ -66,10 +69,13 @@ namespace Material.Application.Routing
 
         public object MenuHeader
         {
-            get { return menuHeader; }
+            get => menuHeader;
             set
             {
-                if (Equals(value, menuHeader)) return;
+                if (Equals(value, menuHeader))
+                {
+                    return;
+                }
                 menuHeader = value;
                 OnPropertyChanged();
             }

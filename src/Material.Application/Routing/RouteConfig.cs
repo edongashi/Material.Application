@@ -25,10 +25,13 @@ namespace Material.Application.Routing
 
         public string Title
         {
-            get { return title; }
+            get => title;
             set
             {
-                if (value == title) return;
+                if (value == title)
+                {
+                    return;
+                }
                 title = value;
                 OnPropertyChanged();
             }
@@ -36,10 +39,13 @@ namespace Material.Application.Routing
 
         public bool ShowTitle
         {
-            get { return showTitle; }
+            get => showTitle;
             set
             {
-                if (value == showTitle) return;
+                if (value == showTitle)
+                {
+                    return;
+                }
                 showTitle = value;
                 OnPropertyChanged();
             }
@@ -47,10 +53,13 @@ namespace Material.Application.Routing
 
         public bool ShowAppBar
         {
-            get { return showAppBar; }
+            get => showAppBar;
             set
             {
-                if (value == showAppBar) return;
+                if (value == showAppBar)
+                {
+                    return;
+                }
                 showAppBar = value;
                 OnPropertyChanged();
             }
@@ -58,10 +67,13 @@ namespace Material.Application.Routing
 
         public PackIconKind? Icon
         {
-            get { return icon; }
+            get => icon;
             set
             {
-                if (value == icon) return;
+                if (value == icon)
+                {
+                    return;
+                }
                 icon = value;
                 OnPropertyChanged();
             }
@@ -71,10 +83,13 @@ namespace Material.Application.Routing
 
         public List<KeyBinding> KeyBindings
         {
-            get { return keyBindings; }
+            get => keyBindings;
             set
             {
-                if (Equals(value, keyBindings)) return;
+                if (Equals(value, keyBindings))
+                {
+                    return;
+                }
                 keyBindings = value;
                 OnPropertyChanged();
             }
@@ -82,9 +97,15 @@ namespace Material.Application.Routing
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public void AddRouteCommandsSeparator() => RouteCommands.Add(null);
+        public void AddRouteCommandsSeparator()
+        {
+            RouteCommands.Add(null);
+        }
 
-        public void RefreshKeyBindings() => OnPropertyChanged(nameof(KeyBindings));
+        public void RefreshKeyBindings()
+        {
+            OnPropertyChanged(nameof(KeyBindings));
+        }
 
         [NotifyPropertyChangedInvocator]
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)

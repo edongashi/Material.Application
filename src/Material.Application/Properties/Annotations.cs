@@ -100,7 +100,7 @@ namespace Material.Application.Properties
             FormatParameterName = formatParameterName;
         }
 
-        public string FormatParameterName { get; private set; }
+        public string FormatParameterName { get; }
     }
 
     /// <summary>
@@ -116,7 +116,7 @@ namespace Material.Application.Properties
         }
 
         [NotNull]
-        public string Name { get; private set; }
+        public string Name { get; }
     }
 
     /// <summary>
@@ -206,7 +206,7 @@ namespace Material.Application.Properties
             ParameterName = parameterName;
         }
 
-        public string ParameterName { get; private set; }
+        public string ParameterName { get; }
     }
 
     /// <summary>
@@ -278,8 +278,8 @@ namespace Material.Application.Properties
             ForceFullStates = forceFullStates;
         }
 
-        public string Contract { get; private set; }
-        public bool ForceFullStates { get; private set; }
+        public string Contract { get; }
+        public bool ForceFullStates { get; }
     }
 
     /// <summary>
@@ -305,7 +305,7 @@ namespace Material.Application.Properties
             Required = required;
         }
 
-        public bool Required { get; private set; }
+        public bool Required { get; }
     }
 
     /// <summary>
@@ -358,7 +358,7 @@ namespace Material.Application.Properties
         }
 
         [NotNull]
-        public Type BaseType { get; private set; }
+        public Type BaseType { get; }
     }
 
     /// <summary>
@@ -389,8 +389,8 @@ namespace Material.Application.Properties
             TargetFlags = targetFlags;
         }
 
-        public ImplicitUseKindFlags UseKindFlags { get; private set; }
-        public ImplicitUseTargetFlags TargetFlags { get; private set; }
+        public ImplicitUseKindFlags UseKindFlags { get; }
+        public ImplicitUseTargetFlags TargetFlags { get; }
     }
 
     /// <summary>
@@ -422,10 +422,10 @@ namespace Material.Application.Properties
         }
 
         [UsedImplicitly]
-        public ImplicitUseKindFlags UseKindFlags { get; private set; }
+        public ImplicitUseKindFlags UseKindFlags { get; }
 
         [UsedImplicitly]
-        public ImplicitUseTargetFlags TargetFlags { get; private set; }
+        public ImplicitUseTargetFlags TargetFlags { get; }
     }
 
     [Flags]
@@ -482,7 +482,7 @@ namespace Material.Application.Properties
             Comment = comment;
         }
 
-        public string Comment { get; private set; }
+        public string Comment { get; }
     }
 
     /// <summary>
@@ -528,7 +528,7 @@ namespace Material.Application.Properties
             Justification = justification;
         }
 
-        public string Justification { get; private set; }
+        public string Justification { get; }
     }
 
     /// <summary>
@@ -571,7 +571,7 @@ namespace Material.Application.Properties
             BasePath = basePath;
         }
 
-        public string BasePath { get; private set; }
+        public string BasePath { get; }
     }
 
     /// <summary>
@@ -665,7 +665,7 @@ namespace Material.Application.Properties
             Format = format;
         }
 
-        public string Format { get; private set; }
+        public string Format { get; }
     }
 
     [AttributeUsage(AttributeTargets.Assembly, AllowMultiple = true)]
@@ -676,7 +676,7 @@ namespace Material.Application.Properties
             Format = format;
         }
 
-        public string Format { get; private set; }
+        public string Format { get; }
     }
 
     [AttributeUsage(AttributeTargets.Assembly, AllowMultiple = true)]
@@ -687,7 +687,7 @@ namespace Material.Application.Properties
             Format = format;
         }
 
-        public string Format { get; private set; }
+        public string Format { get; }
     }
 
     [AttributeUsage(AttributeTargets.Assembly, AllowMultiple = true)]
@@ -698,7 +698,7 @@ namespace Material.Application.Properties
             Format = format;
         }
 
-        public string Format { get; private set; }
+        public string Format { get; }
     }
 
     [AttributeUsage(AttributeTargets.Assembly, AllowMultiple = true)]
@@ -709,7 +709,7 @@ namespace Material.Application.Properties
             Format = format;
         }
 
-        public string Format { get; private set; }
+        public string Format { get; }
     }
 
     [AttributeUsage(AttributeTargets.Assembly, AllowMultiple = true)]
@@ -720,7 +720,7 @@ namespace Material.Application.Properties
             Format = format;
         }
 
-        public string Format { get; private set; }
+        public string Format { get; }
     }
 
     /// <summary>
@@ -741,7 +741,7 @@ namespace Material.Application.Properties
             AnonymousProperty = anonymousProperty;
         }
 
-        public string AnonymousProperty { get; private set; }
+        public string AnonymousProperty { get; }
     }
 
     /// <summary>
@@ -761,7 +761,7 @@ namespace Material.Application.Properties
             AnonymousProperty = anonymousProperty;
         }
 
-        public string AnonymousProperty { get; private set; }
+        public string AnonymousProperty { get; }
     }
 
     /// <summary>
@@ -782,7 +782,7 @@ namespace Material.Application.Properties
             AnonymousProperty = anonymousProperty;
         }
 
-        public string AnonymousProperty { get; private set; }
+        public string AnonymousProperty { get; }
     }
 
     /// <summary>
@@ -911,7 +911,7 @@ namespace Material.Application.Properties
             Name = name;
         }
 
-        public string Name { get; private set; }
+        public string Name { get; }
     }
 
     [AttributeUsage(AttributeTargets.Parameter | AttributeTargets.Field | AttributeTargets.Property)]
@@ -923,7 +923,7 @@ namespace Material.Application.Properties
         }
 
         [NotNull]
-        public string Name { get; private set; }
+        public string Name { get; }
     }
 
     /// <summary>
@@ -948,7 +948,7 @@ namespace Material.Application.Properties
             CollectionAccessType = collectionAccessType;
         }
 
-        public CollectionAccessType CollectionAccessType { get; private set; }
+        public CollectionAccessType CollectionAccessType { get; }
     }
 
     [Flags]
@@ -990,7 +990,7 @@ namespace Material.Application.Properties
             ConditionType = conditionType;
         }
 
-        public AssertionConditionType ConditionType { get; private set; }
+        public AssertionConditionType ConditionType { get; }
     }
 
     /// <summary>
@@ -1080,8 +1080,8 @@ namespace Material.Application.Properties
             ControlType = controlType;
         }
 
-        public string TagName { get; private set; }
-        public Type ControlType { get; private set; }
+        public string TagName { get; }
+        public Type ControlType { get; }
     }
 
     [AttributeUsage(AttributeTargets.Property | AttributeTargets.Method)]
@@ -1107,7 +1107,7 @@ namespace Material.Application.Properties
             Attribute = attribute;
         }
 
-        public string Attribute { get; private set; }
+        public string Attribute { get; }
     }
 
     [AttributeUsage(AttributeTargets.Property)]
@@ -1118,7 +1118,7 @@ namespace Material.Application.Properties
             CreateConstructorReferences = createConstructorReferences;
         }
 
-        public bool CreateConstructorReferences { get; private set; }
+        public bool CreateConstructorReferences { get; }
     }
 
     [AttributeUsage(AttributeTargets.Assembly, AllowMultiple = true)]
@@ -1129,7 +1129,7 @@ namespace Material.Application.Properties
             Name = name;
         }
 
-        public string Name { get; private set; }
+        public string Name { get; }
     }
 
     [AttributeUsage(AttributeTargets.Assembly, AllowMultiple = true)]
@@ -1141,8 +1141,8 @@ namespace Material.Application.Properties
             FieldName = fieldName;
         }
 
-        public string Type { get; private set; }
-        public string FieldName { get; private set; }
+        public string Type { get; }
+        public string FieldName { get; }
     }
 
     [AttributeUsage(AttributeTargets.Method)]

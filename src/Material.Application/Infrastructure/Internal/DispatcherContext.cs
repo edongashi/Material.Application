@@ -14,6 +14,9 @@ namespace Material.Application.Infrastructure
 
         public bool IsSynchronized => dispatcher.CheckAccess();
 
-        public void Invoke(Action action) => dispatcher.Invoke(action);
+        public void Invoke(Action action)
+        {
+            dispatcher.Invoke(action);
+        }
     }
 }

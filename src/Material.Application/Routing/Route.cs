@@ -16,11 +16,6 @@ namespace Material.Application.Routing
     {
         protected const PackIconKind NoIcon = (PackIconKind)(-1);
 
-        protected static IRefreshableCommand CommandNotImplemented([CallerMemberName] string name = null)
-        {
-            return new UntrackedCommand(param => Console.WriteLine($"Called not implemented command {name}"));
-        }
-
         protected internal const double SmallDialog = 250d;
         protected internal const double LargeDialog = 350d;
         protected internal const double ExtraLargeDialog = 450d;
@@ -79,10 +74,13 @@ namespace Material.Application.Routing
         /// </summary>
         public RouteConfig RouteConfig
         {
-            get { return routeConfig; }
+            get => routeConfig;
             protected set
             {
-                if (Equals(value, routeConfig)) return;
+                if (Equals(value, routeConfig))
+                {
+                    return;
+                }
                 routeConfig = value;
                 NotifyPropertyChanged();
             }
@@ -93,10 +91,13 @@ namespace Material.Application.Routing
         /// </summary>
         public IRouteStack Routes
         {
-            get { return routes; }
+            get => routes;
             internal set
             {
-                if (Equals(routes, value)) return;
+                if (Equals(routes, value))
+                {
+                    return;
+                }
                 routes = value;
                 NotifyPropertyChanged();
             }
@@ -114,12 +115,20 @@ namespace Material.Application.Routing
         /// </summary>
         public IRouteFactory RouteFactory { get; }
 
+        protected static IRefreshableCommand CommandNotImplemented([CallerMemberName] string name = null)
+        {
+            return new UntrackedCommand(param => Console.WriteLine($"Called not implemented command {name}"));
+        }
+
         /// <summary>
         /// Resolves a concrete route object.
         /// </summary>
         /// <typeparam name="TRoute">Concrete route type.</typeparam>
         /// <returns>A wrapper for the requested route.</returns>
-        protected RouteWrapper<TRoute> GetRoute<TRoute>() where TRoute : Route => GetRoute<TRoute>(parameters: null);
+        protected RouteWrapper<TRoute> GetRoute<TRoute>() where TRoute : Route
+        {
+            return GetRoute<TRoute>(parameters: null);
+        }
 
         protected RouteWrapper<TRoute> GetRoute<TRoute>(Action<IDictionary<string, object>> parametersInitializer)
             where TRoute : Route
@@ -131,45 +140,56 @@ namespace Material.Application.Routing
 
         protected RouteWrapper<TRoute> GetRoute<TRoute>(string parameterName, object parameterValue)
             where TRoute : Route
-            => GetRoute<TRoute>(new Dictionary<string, object>
+        {
+            return GetRoute<TRoute>(new Dictionary<string, object>
             {
                 [parameterName] = parameterValue
             });
+        }
 
         protected RouteWrapper<TRoute> GetRoute<TRoute>(string parameter1Name, object parameter1Value,
             string parameter2Name,
-            object parameter2Value) where TRoute : Route => GetRoute<TRoute>(new Dictionary<string, object>
+            object parameter2Value) where TRoute : Route
+        {
+            return GetRoute<TRoute>(new Dictionary<string, object>
             {
                 [parameter1Name] = parameter1Value,
                 [parameter2Name] = parameter2Value
             });
+        }
 
         protected RouteWrapper<TRoute> GetRoute<TRoute>(string parameter1Name, object parameter1Value,
             string parameter2Name,
             object parameter2Value, string parameter3Name, object parameter3Value) where TRoute : Route
-            => GetRoute<TRoute>(new Dictionary<string, object>
+        {
+            return GetRoute<TRoute>(new Dictionary<string, object>
             {
                 [parameter1Name] = parameter1Value,
                 [parameter2Name] = parameter2Value,
                 [parameter3Name] = parameter3Value
             });
+        }
 
         protected RouteWrapper<TRoute> GetRoute<TRoute>(string parameter1Name, object parameter1Value,
             string parameter2Name,
             object parameter2Value, string parameter3Name, object parameter3Value, string parameter4Name,
-            object parameter4Value) where TRoute : Route => GetRoute<TRoute>(new Dictionary<string, object>
+            object parameter4Value) where TRoute : Route
+        {
+            return GetRoute<TRoute>(new Dictionary<string, object>
             {
                 [parameter1Name] = parameter1Value,
                 [parameter2Name] = parameter2Value,
                 [parameter3Name] = parameter3Value,
                 [parameter4Name] = parameter4Value
             });
+        }
 
         protected RouteWrapper<TRoute> GetRoute<TRoute>(string parameter1Name, object parameter1Value,
             string parameter2Name,
             object parameter2Value, string parameter3Name, object parameter3Value, string parameter4Name,
             object parameter4Value, string parameter5Name, object parameter5Value) where TRoute : Route
-            => GetRoute<TRoute>(new Dictionary<string, object>
+        {
+            return GetRoute<TRoute>(new Dictionary<string, object>
             {
                 [parameter1Name] = parameter1Value,
                 [parameter2Name] = parameter2Value,
@@ -177,12 +197,15 @@ namespace Material.Application.Routing
                 [parameter4Name] = parameter4Value,
                 [parameter5Name] = parameter5Value
             });
+        }
 
         protected RouteWrapper<TRoute> GetRoute<TRoute>(string parameter1Name, object parameter1Value,
             string parameter2Name,
             object parameter2Value, string parameter3Name, object parameter3Value, string parameter4Name,
             object parameter4Value, string parameter5Name, object parameter5Value, string parameter6Name,
-            object parameter6Value) where TRoute : Route => GetRoute<TRoute>(new Dictionary<string, object>
+            object parameter6Value) where TRoute : Route
+        {
+            return GetRoute<TRoute>(new Dictionary<string, object>
             {
                 [parameter1Name] = parameter1Value,
                 [parameter2Name] = parameter2Value,
@@ -191,6 +214,7 @@ namespace Material.Application.Routing
                 [parameter5Name] = parameter5Value,
                 [parameter6Name] = parameter6Value
             });
+        }
 
         /// <summary>
         /// Resolves a concrete route object.
@@ -207,7 +231,10 @@ namespace Material.Application.Routing
                 .CreateProxy();
         }
 
-        protected RouteWrapper<Route> GetRoute(Type routeType) => GetRoute(routeType, null);
+        protected RouteWrapper<Route> GetRoute(Type routeType)
+        {
+            return GetRoute(routeType, null);
+        }
 
         protected RouteWrapper<Route> GetRoute(Type routeType, IDictionary<string, object> parameters)
         {
@@ -248,7 +275,8 @@ namespace Material.Application.Routing
         protected Task PushMenuRoute(Type routeType)
         {
             AssertIsActiveRoute();
-            return Routes.Push(Routes.FindMenuRoute(route => route.GetType() == routeType), RouteWrapperExtensions.CachedByDefault);
+            return Routes.Push(Routes.FindMenuRoute(route => route.GetType() == routeType),
+                RouteWrapperExtensions.CachedByDefault);
         }
 
         protected Task PushMenuRoute<TRoute>() where TRoute : Route
@@ -298,7 +326,10 @@ namespace Material.Application.Routing
         {
         }
 
-        protected virtual Task RouteInitializingAsync() => Task.CompletedTask;
+        protected virtual Task RouteInitializingAsync()
+        {
+            return Task.CompletedTask;
+        }
 
         internal async Task OnRouteInitialized()
         {
@@ -316,7 +347,10 @@ namespace Material.Application.Routing
         {
         }
 
-        protected virtual Task RouteInitializedAsync() => Task.CompletedTask;
+        protected virtual Task RouteInitializedAsync()
+        {
+            return Task.CompletedTask;
+        }
 
         internal Task OnRouteActivating()
         {
@@ -328,7 +362,10 @@ namespace Material.Application.Routing
         {
         }
 
-        protected virtual Task RouteActivatingAsync() => Task.CompletedTask;
+        protected virtual Task RouteActivatingAsync()
+        {
+            return Task.CompletedTask;
+        }
 
         internal Task OnRouteActivated()
         {
@@ -340,7 +377,10 @@ namespace Material.Application.Routing
         {
         }
 
-        protected virtual Task RouteActivatedAsync() => Task.CompletedTask;
+        protected virtual Task RouteActivatedAsync()
+        {
+            return Task.CompletedTask;
+        }
 
         internal Task OnRouteHiding()
         {
@@ -352,7 +392,10 @@ namespace Material.Application.Routing
         {
         }
 
-        protected virtual Task RouteHidingAsync() => Task.CompletedTask;
+        protected virtual Task RouteHidingAsync()
+        {
+            return Task.CompletedTask;
+        }
 
         internal Task OnRouteHidden()
         {
@@ -364,7 +407,10 @@ namespace Material.Application.Routing
         {
         }
 
-        protected virtual Task RouteHiddenAsync() => Task.CompletedTask;
+        protected virtual Task RouteHiddenAsync()
+        {
+            return Task.CompletedTask;
+        }
 
         internal Task OnRouteRestoring(object result)
         {
@@ -376,7 +422,10 @@ namespace Material.Application.Routing
         {
         }
 
-        protected virtual Task RouteRestoringAsync(object result) => Task.CompletedTask;
+        protected virtual Task RouteRestoringAsync(object result)
+        {
+            return Task.CompletedTask;
+        }
 
         internal Task OnRouteRestored(object result)
         {
@@ -388,7 +437,10 @@ namespace Material.Application.Routing
         {
         }
 
-        protected virtual Task RouteRestoredAsync(object result) => Task.CompletedTask;
+        protected virtual Task RouteRestoredAsync(object result)
+        {
+            return Task.CompletedTask;
+        }
 
         internal Task OnRouteDeactivating(bool isChanging)
         {
@@ -400,7 +452,10 @@ namespace Material.Application.Routing
         {
         }
 
-        protected virtual Task RouteDeactivatingAsync(bool isChanging) => Task.CompletedTask;
+        protected virtual Task RouteDeactivatingAsync(bool isChanging)
+        {
+            return Task.CompletedTask;
+        }
 
         internal Task OnRouteDeactivated(bool isChanging)
         {
@@ -412,7 +467,10 @@ namespace Material.Application.Routing
         {
         }
 
-        protected virtual Task RouteDeactivatedAsync(bool isChanging) => Task.CompletedTask;
+        protected virtual Task RouteDeactivatedAsync(bool isChanging)
+        {
+            return Task.CompletedTask;
+        }
 
         internal Task OnRouteReady(RouteActivationMethod routeActivationMethod,
             [NotNull] IEnumerable<RouteEventError> errors)
@@ -428,13 +486,19 @@ namespace Material.Application.Routing
         }
 
         protected virtual Task RouteReadyAsync(RouteActivationMethod routeActivationMethod,
-            [NotNull] IEnumerable<RouteEventError> errors) => Task.CompletedTask;
+            [NotNull] IEnumerable<RouteEventError> errors)
+        {
+            return Task.CompletedTask;
+        }
 
         /// <summary>
         /// If not null, the return value of this method will be displayed.
         /// View caching is not possible if this method is not implemented.
         /// </summary>
-        protected internal virtual object CreateView(bool isReload) => null;
+        protected internal virtual object CreateView(bool isReload)
+        {
+            return null;
+        }
 
         protected internal virtual void ApplicationShuttingDown()
         {
@@ -565,10 +629,12 @@ namespace Material.Application.Routing
         protected IRefreshableCommand AsyncCommand<TParameter>(Func<TParameter, Task> execute,
             params RefreshSource[] refreshSources) where TParameter : class
         {
-            return Subscribe(refreshSources, new AsyncRouteCommand<TParameter>(this, execute, null, IgnoreNullByDefault));
+            return Subscribe(refreshSources,
+                new AsyncRouteCommand<TParameter>(this, execute, null, IgnoreNullByDefault));
         }
 
-        protected IRefreshableCommand AsyncCommand<TParameter>(Func<TParameter, Task> execute, bool ignoreNullParameters,
+        protected IRefreshableCommand AsyncCommand<TParameter>(Func<TParameter, Task> execute,
+            bool ignoreNullParameters,
             params RefreshSource[] refreshSources) where TParameter : class
         {
             return Subscribe(refreshSources,
@@ -618,7 +684,8 @@ namespace Material.Application.Routing
             return Subscribe(refreshSources, new RouteActionMenuCommand(this, commandText, iconKind, execute, null));
         }
 
-        protected IMenuCommand Command(string commandText, PackIconKind? iconKind, Action execute, Func<bool> canExecute,
+        protected IMenuCommand Command(string commandText, PackIconKind? iconKind, Action execute,
+            Func<bool> canExecute,
             params RefreshSource[] refreshSources)
         {
             return Subscribe(refreshSources,
@@ -649,7 +716,8 @@ namespace Material.Application.Routing
             where TParameter : class
         {
             return Subscribe(refreshSources,
-                new RouteMenuCommand<TParameter>(this, commandText, iconKind, execute, canExecute, IgnoreNullByDefault));
+                new RouteMenuCommand<TParameter>(this, commandText, iconKind, execute, canExecute,
+                    IgnoreNullByDefault));
         }
 
         protected IMenuCommand Command<TParameter>(string commandText, PackIconKind? iconKind,
@@ -657,7 +725,8 @@ namespace Material.Application.Routing
             params RefreshSource[] refreshSources) where TParameter : class
         {
             return Subscribe(refreshSources,
-                new RouteMenuCommand<TParameter>(this, commandText, iconKind, execute, canExecute, ignoreNullParameters));
+                new RouteMenuCommand<TParameter>(this, commandText, iconKind, execute, canExecute,
+                    ignoreNullParameters));
         }
 
         #endregion
@@ -688,7 +757,8 @@ namespace Material.Application.Routing
         protected IMenuCommand AsyncCommand(string commandText, PackIconKind? iconKind, Func<Task> execute,
             params RefreshSource[] refreshSources)
         {
-            return Subscribe(refreshSources, new AsyncRouteActionMenuCommand(this, commandText, iconKind, execute, null));
+            return Subscribe(refreshSources,
+                new AsyncRouteActionMenuCommand(this, commandText, iconKind, execute, null));
         }
 
         protected IMenuCommand AsyncCommand(string commandText, PackIconKind? iconKind, Func<Task> execute,
@@ -714,7 +784,8 @@ namespace Material.Application.Routing
             where TParameter : class
         {
             return Subscribe(refreshSources,
-                new AsyncRouteMenuCommand<TParameter>(this, commandText, iconKind, execute, null, ignoreNullParameters));
+                new AsyncRouteMenuCommand<TParameter>(this, commandText, iconKind, execute, null,
+                    ignoreNullParameters));
         }
 
         protected IMenuCommand AsyncCommand<TParameter>(string commandText, PackIconKind? iconKind,

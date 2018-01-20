@@ -39,16 +39,23 @@ namespace Material.Application.Routing
     public static class RouteStackExtensions
     {
         public static Route FindMenuRoute(this IRouteStack routeStack, Func<Route, bool> filter)
-            => routeStack.MenuRoutes.First(route => route != null && filter(route));
+        {
+            return routeStack.MenuRoutes.First(route => route != null && filter(route));
+        }
 
         public static TRoute FindMenuRoute<TRoute>(this IRouteStack routeStack) where TRoute : Route
-            => (TRoute)routeStack.MenuRoutes.First(route => route is TRoute);
+        {
+            return (TRoute)routeStack.MenuRoutes.First(route => route is TRoute);
+        }
 
         public static TRoute FindMenuRoute<TRoute>(this IRouteStack routeStack, Func<TRoute, bool> filter)
-            where TRoute : Route => (TRoute)routeStack.MenuRoutes.First(route =>
+            where TRoute : Route
+        {
+            return (TRoute)routeStack.MenuRoutes.First(route =>
             {
                 var tRoute = route as TRoute;
                 return tRoute != null && filter(tRoute);
             });
+        }
     }
 }

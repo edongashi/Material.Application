@@ -222,9 +222,9 @@
                     </Grid.RowDefinitions>
                     <materialDesign:ColorZone x:Name="ExtendedAppBar" Visibility="Collapsed" Grid.Row="0"
                                               VerticalAlignment="Stretch"
-                                              Mode="PrimaryMid"/>
+                                              Mode="PrimaryMid" />
                 </Grid>
-         
+
                 <ContentControl x:Name="RouteContentPresenter"
                                 Grid.Row="1"
                                 Content="{Binding Routes.CurrentView}" />

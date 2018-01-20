@@ -13,9 +13,15 @@ namespace Material.Application.Models
             this.model = model;
         }
 
-        public IEnumerator<string> GetEnumerator() => properties.GetEnumerator();
+        public IEnumerator<string> GetEnumerator()
+        {
+            return properties.GetEnumerator();
+        }
 
-        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
 
         public void Add(string propertyName)
         {
@@ -25,7 +31,10 @@ namespace Material.Application.Models
             }
         }
 
-        public bool Remove(string propertyName) => properties.Remove(propertyName);
+        public bool Remove(string propertyName)
+        {
+            return properties.Remove(propertyName);
+        }
 
         public void Refresh()
         {
