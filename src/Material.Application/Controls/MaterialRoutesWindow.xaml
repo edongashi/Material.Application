@@ -33,8 +33,10 @@
     <controls1:MetroWindow.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ToggleButton.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
+                <ResourceDictionary
+                    Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ToggleButton.xaml" />
+                <ResourceDictionary
+                    Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
             </ResourceDictionary.MergedDictionaries>
             <valueConverters:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
             <valueConverters:CollectionToVisibilityConverter x:Key="CollectionToVisibilityConverter" />
@@ -87,10 +89,12 @@
                                             VerticalContentAlignment="Stretch"
                                             Click="MenuRoute_Click">
                                         <Button.Style>
-                                            <Style BasedOn="{StaticResource MaterialDesignFlatButton}" TargetType="{x:Type Button}">
+                                            <Style BasedOn="{StaticResource MaterialDesignFlatButton}"
+                                                   TargetType="{x:Type Button}">
                                                 <Style.Triggers>
                                                     <DataTrigger Binding="{Binding IsActive}" Value="True">
-                                                        <Setter Property="Background" Value="{DynamicResource MaterialDesignFlatButtonClick}" />
+                                                        <Setter Property="Background"
+                                                                Value="{DynamicResource MaterialDesignFlatButtonClick}" />
                                                     </DataTrigger>
                                                 </Style.Triggers>
                                             </Style>
@@ -109,10 +113,10 @@
                                                                                           Converter={StaticResource NullToVisibilityConverter}}">
                                                 <materialDesign:PackIcon.Style>
                                                     <Style TargetType="{x:Type materialDesign:PackIcon}">
-                                                        <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBodyLight}" />
+                                                        <!--<Setter Value="{DynamicResource MaterialDesignBodyLight}" />-->
                                                         <Style.Triggers>
                                                             <DataTrigger Binding="{Binding IsActive}" Value="True">
-                                                                <Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}" />
+                                                                <!--<Setter Property="Foreground" Value="{DynamicResource MaterialDesignBody}" />-->
                                                             </DataTrigger>
                                                         </Style.Triggers>
                                                     </Style>
@@ -169,7 +173,8 @@
                                                                               Path=Foreground}"
                                                          Kind="DotsVertical" />
                             </materialDesign:PopupBox.ToggleContent>
-                            <ItemsControl ItemTemplateSelector="{StaticResource NullAsSeparatorTemplateSelector}" ItemsSource="{Binding Routes.Current.RouteConfig.RouteCommands}">
+                            <ItemsControl ItemTemplateSelector="{StaticResource NullAsSeparatorTemplateSelector}"
+                                          ItemsSource="{Binding Routes.Current.RouteConfig.RouteCommands}">
                                 <ItemsControl.Resources>
                                     <DataTemplate x:Key="SeparatorDataTemplate">
                                         <Rectangle Width="Auto"
@@ -210,6 +215,16 @@
                                                         Converter={StaticResource BooleanToVisibilityConverter}}" />
                     </DockPanel>
                 </materialDesign:ColorZone>
+                <Grid Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <materialDesign:ColorZone x:Name="ExtendedAppBar" Visibility="Collapsed" Grid.Row="0"
+                                              VerticalAlignment="Stretch"
+                                              Mode="PrimaryMid"/>
+                </Grid>
+         
                 <ContentControl x:Name="RouteContentPresenter"
                                 Grid.Row="1"
                                 Content="{Binding Routes.CurrentView}" />

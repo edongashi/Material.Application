@@ -7,6 +7,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using MahApps.Metro.Controls;
 using Material.Application.Commands;
 using Material.Application.Controls;
 using Material.Application.Properties;
@@ -49,7 +50,21 @@ namespace Material.Application.Infrastructure
         private ICommand menuCommand;
         private string title;
         private bool toggleState;
+        private bool isAppbarExtended;
         private bool _closeOnClickAway;
+
+        public bool IsAppbarExtended
+        {
+            get => isAppbarExtended;
+            set
+            {
+                isAppbarExtended = value;
+                if (GetMainWindow() is MaterialRoutesWindow window)
+                {
+                    window.Invoke(() => window.ExtendedAppBar.Visibility = GetAppbarExtendedVisibility());
+                }
+            }
+        }
 
         protected AppController()
         {
@@ -237,8 +252,18 @@ namespace Material.Application.Infrastructure
         {
             return new MaterialRoutesWindow(this)
             {
-                RootDialog = {Identifier = HostIdentifer, CloseOnClickAway = CloseOnClickAway}
+                RootDialog = { Identifier = HostIdentifer },
+                ExtendedAppBar =
+                {
+                    Visibility =
+                        GetAppbarExtendedVisibility()
+                },
             };
+        }
+
+        private Visibility GetAppbarExtendedVisibility()
+        {
+            return IsAppbarExtended ? Visibility.Visible : Visibility.Collapsed;
         }
 
         protected virtual Route GetInitialRoute() => InitialRoute ?? Routes.MenuRoutes.First();

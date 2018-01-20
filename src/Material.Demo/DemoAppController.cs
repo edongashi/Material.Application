@@ -8,6 +8,7 @@ namespace Material.Demo
     {
         protected override void OnInitializing()
         {
+            IsAppbarExtended = true;
             var factory = Routes.RouteFactory;
             Routes.MenuRoutes.Add(InitialRoute = factory.Get<HomeRoute>());
             Routes.MenuRoutes.Add(factory.Get<AboutRoute>());
