@@ -8,9 +8,9 @@
     <owners>Edon Gashi</owners>
     <projectUrl>https://github.com/EdonGashi/Material.Application</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>View-First in WPF</description>
+    <description>ViewModel-first WPF framework</description>
     <releaseNotes>First release.</releaseNotes>
-    <copyright>Copyright 2017</copyright>
-    <tags>Tag1 Tag2</tags>
+    <copyright>Copyright 2018</copyright>
+    <tags>WPF Material Framework</tags>
   </metadata>
 </package>
