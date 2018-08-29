@@ -44,7 +44,8 @@
     </controls1:MetroWindow.Resources>
     <materialDesign:DialogHost x:Name="RootDialog"
                                Identifier="RootDialog"
-                               SnackbarMessageQueue="{Binding SnackbarMessageQueue}">
+                               SnackbarMessageQueue="{Binding SnackbarMessageQueue}"
+                               CloseOnClickAway="{Binding CloseDialogOnClickAway}">
         <materialDesign:DrawerHost IsLeftDrawerOpen="{Binding IsMenuOpen}">
             <materialDesign:DrawerHost.LeftDrawerContent>
                 <Grid Width="300">

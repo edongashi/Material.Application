@@ -20,26 +20,7 @@ namespace Material.Application.Infrastructure
     public abstract class AppController : INotifyPropertyChanged, IRouteErrorListener,
         IMainWindowLocator, IMainWindowController
     {
-        public bool CloseOnClickAway
-        {
-            get => _closeOnClickAway;
-            set
-            {
-                _closeOnClickAway = value;
-
-                try
-                {
-                    ((MaterialRoutesWindow) Window).RootDialog.CloseOnClickAway = value;
-                }
-                catch
-                {
-                    //Supress (Window might not be initialized yet)
-                }
-            }
-        }
-
         private static int dialogId;
-
         private readonly int id;
 
         private double fontSize = 13d;
@@ -49,7 +30,7 @@ namespace Material.Application.Infrastructure
         private ICommand menuCommand;
         private string title;
         private bool toggleState;
-        private bool _closeOnClickAway;
+        private bool closeDialogOnClickAway;
 
         protected AppController()
         {
@@ -91,7 +72,7 @@ namespace Material.Application.Infrastructure
 
         public bool LockToggle
         {
-            get { return lockToggle; }
+            get => lockToggle;
             private set
             {
                 if (value == lockToggle) return;
@@ -102,7 +83,7 @@ namespace Material.Application.Infrastructure
 
         public bool ToggleState
         {
-            get { return toggleState; }
+            get => toggleState;
             private set
             {
                 if (value == toggleState) return;
@@ -113,11 +94,22 @@ namespace Material.Application.Infrastructure
 
         public ICommand MenuCommand
         {
-            get { return menuCommand; }
+            get => menuCommand;
             private set
             {
                 if (Equals(value, menuCommand)) return;
                 menuCommand = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public bool CloseDialogOnClickAway
+        {
+            get => closeDialogOnClickAway;
+            set
+            {
+                if (Equals(value, closeDialogOnClickAway)) return;
+                closeDialogOnClickAway = value;
                 OnPropertyChanged();
             }
         }
@@ -128,7 +120,7 @@ namespace Material.Application.Infrastructure
 
         public bool IsMenuOpen
         {
-            get { return isMenuOpen; }
+            get => isMenuOpen;
             set
             {
                 if (value == isMenuOpen) return;
@@ -140,7 +132,7 @@ namespace Material.Application.Infrastructure
 
         public string Title
         {
-            get { return title; }
+            get => title;
             set
             {
                 if (value == title) return;
@@ -151,7 +143,7 @@ namespace Material.Application.Infrastructure
 
         public double FontSize
         {
-            get { return fontSize; }
+            get => fontSize;
             set
             {
                 if (value.Equals(fontSize)) return;
@@ -215,6 +207,7 @@ namespace Material.Application.Infrastructure
                     // ignored
                 }
 
+                OnClosing();
                 Kernel.Dispose();
                 System.Windows.Application.Current.Shutdown();
             }
@@ -233,11 +226,15 @@ namespace Material.Application.Infrastructure
         {
         }
 
+        protected virtual void OnClosing()
+        {
+        }
+
         protected virtual Window CreateMainWindow()
         {
             return new MaterialRoutesWindow(this)
             {
-                RootDialog = {Identifier = HostIdentifer, CloseOnClickAway = CloseOnClickAway}
+                RootDialog = { Identifier = HostIdentifer }
             };
         }
 

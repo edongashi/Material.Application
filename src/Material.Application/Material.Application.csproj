@@ -105,7 +105,6 @@
     <Compile Include="Commands\UntrackedCommand.cs" />
     <Compile Include="Commands\IRefreshableCommand.cs" />
     <Compile Include="Commands\IMenuCommand.cs" />
-    <Compile Include="Routing\Default\ListRoute.cs" />
     <Compile Include="ValueConverters\CollectionToVisibilityConverter.cs" />
     <Compile Include="Controls\LockableToggleButton.cs" />
     <Compile Include="Controls\NullAsSeparatorTemplateSelector.cs" />
@@ -143,26 +142,12 @@
     <Compile Include="Routing\RouteTransitionException.cs" />
     <Compile Include="Routing\Internal\RouteWrapperInternal.cs" />
     <Compile Include="Routing\TransientRoute.cs" />
-    <Compile Include="Views\CollectionView.xaml.cs">
-      <DependentUpon>CollectionView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\FormView.xaml.cs">
-      <DependentUpon>FormView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\LoadingView.xaml.cs">
       <DependentUpon>LoadingView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Include="Controls\MaterialRoutesWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\CollectionView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\FormView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
